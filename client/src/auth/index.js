@@ -81,10 +81,11 @@ function AuthContextProvider(props) {
             authReducer({
                 type: AuthActionType.REGISTER_USER,
                 payload: {
-                    user: response.data.user
+                    user: response.data.user,
+                    loggedIn: response.data.loggedIn,
                 }
             })
-            history.push("/login");
+            history.push("/");
         }
     }
 
