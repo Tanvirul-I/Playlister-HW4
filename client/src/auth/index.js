@@ -9,7 +9,8 @@ export const AuthActionType = {
     GET_LOGGED_IN: "GET_LOGGED_IN",
     LOGIN_USER: "LOGIN_USER",
     LOGOUT_USER: "LOGOUT_USER",
-    REGISTER_USER: "REGISTER_USER"
+    REGISTER_USER: "REGISTER_USER",
+    SET_LOGGED_IN: "SET_LOGGED_IN"
 }
 
 function AuthContextProvider(props) {
@@ -48,6 +49,12 @@ function AuthContextProvider(props) {
                 return setAuth({
                     user: payload.user,
                     loggedIn: true
+                })
+            }
+            case AuthActionType.SET_LOGGED_IN: {
+                return setAuth({
+                    user: payload.user,
+                    loggedIn: payload.loggedIn
                 })
             }
             default:
@@ -97,7 +104,7 @@ function AuthContextProvider(props) {
     auth.logoutUser = async function() {
         const response = await api.logoutUser();
         if (response.status === 200) {
-            authReducer( {
+            authReducer({
                 type: AuthActionType.LOGOUT_USER,
                 payload: null
             })
