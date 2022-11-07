@@ -5,6 +5,7 @@ import AuthContext from '../auth'
 
 export default function HomeWrapper() {
     const { auth } = useContext(AuthContext);
+    console.log(auth)
     console.log("HomeWrapper auth.loggedIn: " + auth.loggedIn);
     
     if (auth.loggedIn)

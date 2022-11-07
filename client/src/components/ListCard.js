@@ -21,13 +21,11 @@ function ListCard(props) {
     const { idNamePair, selected } = props;
 
     function handleLoadList(event, id) {
-        console.log("handleLoadList for " + id);
+        
         if (!event.target.disabled) {
             let _id = event.target.id;
             if (_id.indexOf('list-card-text-') >= 0)
                 _id = ("" + _id).substring("list-card-text-".length);
-
-            console.log("load " + event.target.id);
 
             // CHANGE THE CURRENT LIST
             store.setCurrentList(id);
