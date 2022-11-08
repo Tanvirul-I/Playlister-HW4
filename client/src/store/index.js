@@ -203,7 +203,8 @@ function GlobalStoreContextProvider(props) {
                     listNameActive: false,
                     listIdMarkedForDeletion: null,
                     listMarkedForDeletion: null,
-                    errorMessage: null
+                    errorMessage: null,
+                    type: "edit"
                 });
             }
             case GlobalStoreActionType.REMOVE_SONG: {
@@ -217,7 +218,8 @@ function GlobalStoreContextProvider(props) {
                     listNameActive: false,
                     listIdMarkedForDeletion: null,
                     listMarkedForDeletion: null,
-                    errorMessage: null
+                    errorMessage: null,
+                    type: "remove"
                 });
             }
             case GlobalStoreActionType.ERROR: {
@@ -231,7 +233,8 @@ function GlobalStoreContextProvider(props) {
                     listNameActive: false,
                     listIdMarkedForDeletion: null,
                     listMarkedForDeletion: null,
-                    errorMessage: payload.message
+                    errorMessage: payload.message,
+                    type: "error"
                 });
             }
             case GlobalStoreActionType.HIDE_MODALS: {
@@ -385,7 +388,7 @@ function GlobalStoreContextProvider(props) {
         storeReducer({
             type: GlobalStoreActionType.EDIT_SONG,
             payload: {currentSongIndex: songIndex, currentSong: songToEdit}
-        });        
+        });
     }
     store.showRemoveSongModal = (songIndex, songToRemove) => {
         storeReducer({

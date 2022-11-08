@@ -70,6 +70,7 @@ function SongCard(props) {
                 className="list-card-button"
                 value={"\u2715"}
                 onClick={handleRemoveSong}
+                style={{ lineHeight : .8 }}
             />
         </div>
     );

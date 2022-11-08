@@ -286,7 +286,18 @@ input {
   transition: all 0.35s ease-in;
   font-family: var(--font-primary);
 }
-
+#edit-song-modal {
+  position: fixed;
+  height: 7vh;
+  font-size: 150%;
+  top: 35%;
+}
+#remove-song-modal {
+  position: fixed;
+  height: 7vh;
+  font-size: 150%;
+  top: 35%;
+}
 .modal.is-visible {
   visibility: visible;
   opacity: 1;

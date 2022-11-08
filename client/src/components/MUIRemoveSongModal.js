@@ -13,7 +13,8 @@ const style = {
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
-    p: 4,
+    p: 10,
+    height: 60,
 };
 
 export default function MUIRemoveSongModal() {
@@ -38,7 +39,8 @@ export default function MUIRemoveSongModal() {
 
     return (
         <Modal
-            open={store.listMarkedForDeletion !== null}
+            open={store.type && store.type === "remove"}
+            style={{ zIndex: 1250 }}
         >
             <Box sx={style}>
             <div
