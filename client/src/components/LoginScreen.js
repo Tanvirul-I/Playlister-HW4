@@ -31,9 +31,7 @@ export default function LoginScreen() {
                 formData.get('password')
             );
         } catch (e) {
-            console.log(e.data.errorMessage)
             store.showErrorModal(e.data.errorMessage)
-            console.log(store.errorMessage);
         }
     };
 

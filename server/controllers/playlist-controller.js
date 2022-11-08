@@ -53,7 +53,7 @@ deletePlaylist = async (req, res) => {
         // DOES THIS LIST BELONG TO THIS USER?
         async function asyncFindUser(list) {
             User.findOne({ email: list.ownerEmail }, (err, user) => {
-                if (user._id == req.userId) {
+                if (user._id == req.userId && list.ownerEmail == user.email) {
                     Playlist.findOneAndDelete({ _id: req.params.id }, () => {
                         return res.status(200).json({
                             "success": true
@@ -80,7 +80,7 @@ getPlaylistById = async (req, res) => {
         // DOES THIS LIST BELONG TO THIS USER?
         async function asyncFindUser(list) {
             await User.findOne({ email: list.ownerEmail }, (err, user) => {
-                if (user._id == req.userId) {
+                if (user._id == req.userId && list.ownerEmail == user.email) {
                     return res.status(200).json({ success: true, playlist: list })
                 }
                 else {
@@ -92,7 +92,7 @@ getPlaylistById = async (req, res) => {
     }).catch(err => console.log(err))
 }
 getPlaylistPairs = async (req, res) => {
-    await User.findOne({ _id: req.userId }, (err, user) => {
+    await User.findOne({ _id: req.userId }, async (err, user) => {
         async function asyncFindList(email) {
             await Playlist.find({ ownerEmail: email }, (err, playlists) => {
                 if (err) {
@@ -155,7 +155,7 @@ updatePlaylist = async (req, res) => {
         // DOES THIS LIST BELONG TO THIS USER?
         async function asyncFindUser(list) {
             await User.findOne({ email: list.ownerEmail }, (err, user) => {
-                if (user._id == req.userId) {
+                if (user._id == req.userId && list.ownerEmail == user.email) {
 
                     list.name = body.playlist.name;
                     list.songs = body.playlist.songs;

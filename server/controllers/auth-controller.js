@@ -62,7 +62,6 @@ loginUser = async (req, res) => {
 
         // LOGIN THE USER
         const token = auth.signToken(existingUser._id);
-        console.log(token);
 
         res.cookie("token", token, {
             httpOnly: true,

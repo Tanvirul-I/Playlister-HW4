@@ -31,9 +31,7 @@ export default function RegisterScreen() {
                 formData.get('passwordVerify')
             );
         } catch (e) {
-            console.log(e.data.errorMessage)
             store.showErrorModal(e.data.errorMessage)
-            console.log(store.errorMessage);
         }
     };
 

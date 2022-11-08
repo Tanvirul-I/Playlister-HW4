@@ -372,8 +372,6 @@ function GlobalStoreContextProvider(props) {
                 store.loadIdNamePairs();
                 history.push("/");
             }
-            console.log(response)
-            console.log("test")
         }
         processDelete(id);
     }
