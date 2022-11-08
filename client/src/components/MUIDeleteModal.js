@@ -23,15 +23,18 @@ export default function MUIDeleteModal() {
         name = store.listMarkedForDeletion.name;
     }
     function handleDeleteList(event) {
+        event.stopPropagation()
         store.deleteMarkedList();
     }
     function handleCloseModal(event) {
+        event.stopPropagation()
         store.unmarkListForDeletion();
     }
 
     return (
         <Modal
             open={store.listMarkedForDeletion !== null}
+            style={{ zIndex: 1250 }}
         >
             <Box sx={style}>
                 <div className="modal-dialog">

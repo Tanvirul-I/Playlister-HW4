@@ -55,7 +55,9 @@ deletePlaylist = async (req, res) => {
             User.findOne({ email: list.ownerEmail }, (err, user) => {
                 if (user._id == req.userId) {
                     Playlist.findOneAndDelete({ _id: req.params.id }, () => {
-                        return res.status(200).json({});
+                        return res.status(200).json({
+                            "success": true
+                        });
                     }).catch(err => console.log(err))
                 }
                 else {

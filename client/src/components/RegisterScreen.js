@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import AuthContext from '../auth'
 import Copyright from './Copyright'
+import { GlobalStoreContext } from '../store'
+import MUIErrorModal from './MUIErrorModal'
 
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -15,21 +17,29 @@ import Typography from '@mui/material/Typography';
 
 export default function RegisterScreen() {
     const { auth } = useContext(AuthContext);
+    const { store } = useContext(GlobalStoreContext);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
-        auth.registerUser(
-            formData.get('firstName'),
-            formData.get('lastName'),
-            formData.get('email'),
-            formData.get('password'),
-            formData.get('passwordVerify')
-        );
+        try {
+            await auth.registerUser(
+                formData.get('firstName'),
+                formData.get('lastName'),
+                formData.get('email'),
+                formData.get('password'),
+                formData.get('passwordVerify')
+            );
+        } catch (e) {
+            console.log(e.data.errorMessage)
+            store.showErrorModal(e.data.errorMessage)
+            console.log(store.errorMessage);
+        }
     };
 
     return (
             <Container component="main" maxWidth="xs">
+                <MUIErrorModal />
                 <CssBaseline />
                 <Box
                     sx={{

@@ -11,8 +11,7 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
-    "z-index": 1000
+    width: 400
 };
 
 export default function MUIErrorModal() {
@@ -25,11 +24,12 @@ export default function MUIErrorModal() {
     return (
         <Modal
             open={errorMessage !== null}
+            style={{ zIndex: 1250 }}
         >
             <Box sx={style} m={2} pt={3}>
                 <div className="modal-dialog-error">
                 <div id="error-dialog-header">
-                    Error
+                    ERROR
                 </div>
                 <header className="dialog-header">
                     <Alert severity="error">{errorMessage}</Alert>

@@ -50,6 +50,7 @@ export default function MUIEditSongModal() {
     return (
         <Modal
             open={store.listMarkedForDeletion !== null}
+            style={{ zIndex: 1250 }}
         >
             <Box sx={style}>
             <div

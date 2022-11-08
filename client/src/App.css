@@ -7,11 +7,11 @@
         @author McKilla Gorilla
     */
   --swatch-foundation: #2f2f2f;
-  --swatch-primary: #c9c9c9;
-  --swatch-complement: #d6d6d6;
+  --swatch-primary: #ffffff;
+  --swatch-complement: #c9c9c9;
   --swatch-contrast: #111111;
   --swatch-accent: #669966;
-  --swatch-status: #ffffff;
+  --swatch-status: #d6d6d6;
   --my-font-family: "Robaaaoto";
   --bounceEasing: cubic-bezier(0.51, 0.92, 0.24, 1.15);
 }
@@ -32,6 +32,7 @@ body {
   left: 10%;
   height: 90%;
   top: 5%;
+  z-index: 1
 }
 
 #app-root {
