@@ -1,6 +1,8 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, useContext } from "react";
 import { useHistory } from 'react-router-dom'
 import api from './auth-request-api'
+import { GlobalStoreContext } from '../store'
+
 
 const AuthContext = createContext();
 
@@ -19,6 +21,7 @@ function AuthContextProvider(props) {
         loggedIn: false
     });
     const history = useHistory();
+    const { store } = useContext(GlobalStoreContext);
 
     useEffect(() => {
         auth.getLoggedIn();
@@ -99,6 +102,8 @@ function AuthContextProvider(props) {
                 }
             })
             history.push("/");
+        } else {
+            errorMessage(response)
         }
     }
 
@@ -121,6 +126,11 @@ function AuthContextProvider(props) {
         }
         
         return initials;
+    }
+
+    let errorMessage = function(response) {
+        console.log(response)
+        store.showErrorModal(response.res.body.errorMessage)
     }
 
     return (

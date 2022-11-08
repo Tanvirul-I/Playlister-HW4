@@ -1,5 +1,7 @@
 import { useContext } from 'react';
 import AuthContext from '../auth'
+import { GlobalStoreContext } from '../store'
+import MUIErrorModal from './MUIErrorModal'
 
 import Copyright from './Copyright'
 
@@ -18,19 +20,26 @@ import Typography from '@mui/material/Typography';
 
 export default function LoginScreen() {
     const { auth } = useContext(AuthContext);
+    const { store } = useContext(GlobalStoreContext);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
-        auth.loginUser(
-            formData.get('email'),
-            formData.get('password')
-        );
-
+        try {
+            await auth.loginUser(
+                formData.get('email'),
+                formData.get('password')
+            );
+        } catch (e) {
+            console.log(e.data.errorMessage)
+            store.showErrorModal(e.data.errorMessage)
+            console.log(store.errorMessage);
+        }
     };
 
     return (
         <Grid container component="main" sx={{ height: '100vh' }}>
+            <MUIErrorModal />
             <CssBaseline />
             <Grid
                 item

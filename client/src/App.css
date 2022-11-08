@@ -303,6 +303,25 @@ input {
   border-style: groove;
 }
 
+.modal-dialog-error {
+  position: relative;
+  max-width: 800px;
+  max-height: 80vh;
+  background: var(--swatch-complement);
+  overflow: auto;
+  cursor: default;
+  border-width: 5px;
+  border-radius: 10px;
+  border-style: groove;
+}
+#error-dialog-header {
+  text-align: center
+}
+
+.modal-dialog-error > * {
+  margin: 10px 0;
+}
+
 .modal-dialog > * {
   padding: 1rem;
 }
